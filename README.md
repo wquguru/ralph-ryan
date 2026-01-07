@@ -4,9 +4,9 @@
 
 Ralph is an autonomous AI agent loop that runs [Amp](https://ampcode.com) repeatedly until all PRD items are complete. Each iteration is a fresh Amp instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 
-Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/) and [Anthropic's research on effective agent harnesses](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
-[See the announcement on X](https://x.com/ryancarson/status/2008548371712135632)
+[Read my in-depth article on how I use Ralph](https://x.com/ryancarson/status/2008548371712135632)
 
 ## Prerequisites
 
@@ -176,5 +176,4 @@ Ralph automatically archives previous runs when you start a new feature (differe
 ## References
 
 - [Geoffrey Huntley's Ralph article](https://ghuntley.com/ralph/)
-- [Anthropic's agent harnesses research](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Amp documentation](https://ampcode.com)
