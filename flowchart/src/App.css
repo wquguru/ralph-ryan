@@ -189,6 +189,10 @@
   }
 
   .node-description {
-    font-size: 10px;
+    display: none;
+  }
+
+  .note-node {
+    display: none;
   }
 }
