@@ -18,9 +18,6 @@ import {
 import '@xyflow/react/dist/style.css';
 import './App.css';
 
-const nodeWidth = 240;
-const nodeHeight = 70;
-
 // Setup phase - horizontal at top
 // Loop phase - circular arrangement below
 // Exit - at bottom center
@@ -162,8 +159,6 @@ function createNode(step: typeof allSteps[0], visible: boolean, position?: { x: 
       phase: step.phase,
     },
     style: {
-      width: nodeWidth,
-      height: nodeHeight,
       opacity: visible ? 1 : 0,
       transition: 'opacity 0.5s ease-in-out',
       pointerEvents: visible ? 'auto' : 'none',

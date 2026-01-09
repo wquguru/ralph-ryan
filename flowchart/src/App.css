@@ -169,3 +169,19 @@
 .react-flow__controls-button:last-child {
   border-bottom: none;
 }
+
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+  .custom-node {
+    width: 180px;
+    height: 60px;
+  }
+
+  .node-title {
+    font-size: 13px;
+  }
+
+  .node-description {
+    font-size: 10px;
+  }
+}
