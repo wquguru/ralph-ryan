@@ -18,9 +18,6 @@ import {
 import '@xyflow/react/dist/style.css';
 import './App.css';
 
-const nodeWidth = 240;
-const nodeHeight = 70;
-
 // Setup phase - horizontal at top
 // Loop phase - circular arrangement below
 // Exit - at bottom center
@@ -36,18 +33,18 @@ const phaseColors: Record<Phase, { bg: string; border: string }> = {
 
 const allSteps: { id: string; label: string; description: string; phase: Phase }[] = [
   // Setup phase (vertical)
-  { id: '1', label: 'Write PRD | 编写 PRD', description: 'Use ralph-ryan skill | 使用 ralph-ryan 技能', phase: 'setup' },
-  { id: '2', label: 'Prep | 准备', description: 'Convert to prd.json | 转换为 prd.json', phase: 'setup' },
-  { id: '3', label: 'Run ralph-loop | 运行 ralph-loop', description: 'Start autonomous loop | 启动自主循环', phase: 'setup' },
+  { id: '1', label: '写PRD / PRD', description: '使用skill / use skill', phase: 'setup' },
+  { id: '2', label: '准备 / Prep', description: '转为json / to json', phase: 'setup' },
+  { id: '3', label: '运行 / Run', description: '启动循环 / start loop', phase: 'setup' },
   // Loop phase
-  { id: '4', label: 'Pick story | 选择故事', description: 'Find next passes: false | 找下一个未完成', phase: 'loop' },
-  { id: '5', label: 'Implement | 实现', description: 'Write code, run tests | 写代码、跑测试', phase: 'loop' },
-  { id: '6', label: 'Commit | 提交', description: 'If tests pass | 测试通过则提交', phase: 'loop' },
-  { id: '7', label: 'Update prd.json | 更新', description: 'Set passes: true | 标记完成', phase: 'loop' },
-  { id: '8', label: 'Log | 记录', description: 'Save to progress.txt | 保存学习记录', phase: 'loop' },
-  { id: '9', label: 'More? | 还有吗？', description: '', phase: 'decision' },
+  { id: '4', label: '选故事 / Pick', description: '找未完成 / find next', phase: 'loop' },
+  { id: '5', label: '实现 / Code', description: '写码测试 / code & test', phase: 'loop' },
+  { id: '6', label: '提交 / Commit', description: '测试通过 / if pass', phase: 'loop' },
+  { id: '7', label: '更新 / Update', description: '标记完成 / mark done', phase: 'loop' },
+  { id: '8', label: '记录 / Log', description: '保存学习 / save notes', phase: 'loop' },
+  { id: '9', label: '还有? / More?', description: '', phase: 'decision' },
   // Exit
-  { id: '10', label: 'Done! | 完成！', description: 'All stories complete | 所有故事已完成', phase: 'done' },
+  { id: '10', label: '完成! / Done!', description: '全部完成 / all done', phase: 'done' },
 ];
 
 const notes = [
@@ -56,33 +53,34 @@ const notes = [
     appearsWithStep: 2,
     position: { x: 340, y: 100 },
     color: { bg: '#f5f0ff', border: '#8b5cf6' },
-    content: `# Three Phases | 三阶段
+    content: `三阶段 / 3 Phases
 
-1. PRD: use ralph-ryan skill
-2. Prep: use ralph-ryan skill
-3. Run: /ralph-loop "..."`,
+1. PRD: ralph-ryan skill
+2. Prep: ralph-ryan skill
+3. Run: /ralph-loop`,
   },
   {
     id: 'note-2',
     appearsWithStep: 8,
     position: { x: 480, y: 620 },
     color: { bg: '#fdf4f0', border: '#c97a50' },
-    content: `Learnings saved to progress.txt
-学习记录保存到 progress.txt
-
-Future iterations benefit!
-后续迭代可复用！`,
+    content: `学习记录 → progress.txt
+后续迭代可复用!`,
   },
 ];
 
-function CustomNode({ data }: { data: { title: string; description: string; phase: Phase } }) {
+const MANUAL_STEP_IDS = ['1', '2', '3'];
+
+function CustomNode({ data }: { data: { id: string; title: string; description: string; phase: Phase } }) {
   const colors = phaseColors[data.phase];
+  const isManual = MANUAL_STEP_IDS.includes(data.id);
+  const icon = isManual ? '👆' : '⚙️';
   return (
-    <div 
+    <div
       className="custom-node"
-      style={{ 
-        backgroundColor: colors.bg, 
-        borderColor: colors.border 
+      style={{
+        backgroundColor: colors.bg,
+        borderColor: colors.border
       }}
     >
       <Handle type="target" position={Position.Top} id="top" />
@@ -94,7 +92,7 @@ function CustomNode({ data }: { data: { title: string; description: string; phas
       <Handle type="source" position={Position.Top} id="top-source" />
       <Handle type="source" position={Position.Left} id="left-source" />
       <div className="node-content">
-        <div className="node-title">{data.title}</div>
+        <div className="node-title"><span className="node-icon">{icon}</span> {data.title}</div>
         {data.description && <div className="node-description">{data.description}</div>}
       </div>
     </div>
@@ -157,13 +155,12 @@ function createNode(step: typeof allSteps[0], visible: boolean, position?: { x: 
     type: 'custom',
     position: position || positions[step.id],
     data: {
+      id: step.id,
       title: step.label,
       description: step.description,
       phase: step.phase,
     },
     style: {
-      width: nodeWidth,
-      height: nodeHeight,
       opacity: visible ? 1 : 0,
       transition: 'opacity 0.5s ease-in-out',
       pointerEvents: visible ? 'auto' : 'none',
@@ -322,8 +319,8 @@ function App() {
   return (
     <div className="app-container">
       <div className="header">
-        <h1>How Ralph-Ryan Works with Claude Code | Ralph-Ryan 与 Claude Code 协作流程</h1>
-        <p>Autonomous AI agent loop for completing PRDs | 自主 AI 代理循环完成 PRD</p>
+        <h1>Ralph-Ryan 流程 / Workflow</h1>
+        <p>自主AI循环 / Autonomous Loop</p>
       </div>
       <div className="flow-container">
         <ReactFlow
@@ -354,16 +351,19 @@ function App() {
       </div>
       <div className="controls">
         <button onClick={handlePrev} disabled={visibleCount <= 1}>
-          Previous
+          <span className="btn-text">Previous</span>
+          <span className="btn-icon">←</span>
         </button>
         <span className="step-counter">
-          Step {visibleCount} of {allSteps.length}
+          {visibleCount} / {allSteps.length}
         </span>
         <button onClick={handleNext} disabled={visibleCount >= allSteps.length}>
-          Next
+          <span className="btn-text">Next</span>
+          <span className="btn-icon">→</span>
         </button>
         <button onClick={handleReset} className="reset-btn">
-          Reset
+          <span className="btn-text">Reset</span>
+          <span className="btn-icon">↺</span>
         </button>
       </div>
       <div className="instructions">

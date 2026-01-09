@@ -1,0 +1,118 @@
+{
+  "project": "Ralph-Ryan for Claude Code",
+  "featureName": "documentation-flowchart-update",
+  "branchName": "ralph/documentation-flowchart-update",
+  "description": "Update all documentation and flowchart to reflect the new Claude Code-native workflow with ralph-ryan skill and ralph-loop plugin",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Update flowchart steps and labels",
+      "description": "As a user viewing the flowchart, I want to see the correct Claude Code workflow so that I understand how ralph-ryan skill works with ralph-loop plugin",
+      "acceptanceCriteria": [
+        "Update allSteps array in flowchart/src/App.tsx to reflect new workflow: Setup (Write PRD → Prep → Run ralph-loop), Loop (Claude picks story → Implements → Commits → Updates prd.json → Logs progress → More stories?), Exit (Done!)",
+        "Replace all 'Amp' references with 'Claude Code' or 'Claude'",
+        "Update header title to bilingual: 'How Ralph-Ryan Works with Claude Code | Ralph-Ryan 与 Claude Code 协作流程'",
+        "Typecheck passes (cd flowchart && npm run build)"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Completed - Updated allSteps, header title and subtitle to bilingual"
+    },
+    {
+      "id": "US-002",
+      "title": "Update flowchart notes content",
+      "description": "As a user, I want the flowchart notes to show relevant Claude Code examples so that I understand the practical usage",
+      "acceptanceCriteria": [
+        "Update note-1 to show three-phase command workflow: Phase 1 PRD, Phase 2 Prep, Phase 3 Run with ralph-loop",
+        "Update note-2 to mention skill-based learning persistence",
+        "Ensure notes appear at appropriate steps",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Completed - Updated both notes with bilingual content"
+    },
+    {
+      "id": "US-003",
+      "title": "Add bilingual support to flowchart",
+      "description": "As a Chinese-speaking user, I want to see bilingual labels in the flowchart so that I can understand the workflow in my language",
+      "acceptanceCriteria": [
+        "Add Chinese translations to step labels (format: 'English | 中文')",
+        "Add Chinese translations to step descriptions",
+        "Update subtitle to be bilingual",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Completed - All steps now have bilingual labels and descriptions"
+    },
+    {
+      "id": "US-004",
+      "title": "Update README.md structure and introduction",
+      "description": "As a new user, I want the README to clearly explain what ralph-ryan is and how it enhances Claude Code so that I can quickly understand the value proposition",
+      "acceptanceCriteria": [
+        "Replace header with bilingual title: '# Ralph-Ryan for Claude Code | Claude Code 版 Ralph-Ryan'",
+        "Add bilingual introduction explaining: what ralph-ryan skill is, how it works with official ralph-loop plugin, the three-phase workflow",
+        "Remove all Amp-specific content (Prerequisites, Setup options for Amp)",
+        "Keep attribution to Geoffrey Huntley's original Ralph pattern as 'Acknowledgments' section"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Completed - Full README rewrite with bilingual content"
+    },
+    {
+      "id": "US-005",
+      "title": "Update README.md prerequisites and setup",
+      "description": "As a Claude Code user, I want clear setup instructions so that I can start using ralph-ryan quickly",
+      "acceptanceCriteria": [
+        "Update Prerequisites section (bilingual): Claude Code CLI installed, ralph-loop plugin installed, Git repository",
+        "Update Setup section to show skill installation: cp -r skills/ralph-ryan ~/.claude/skills/",
+        "Add Quick Start example showing the three commands"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": "Completed - Prerequisites, Setup, and Quick Start sections added"
+    },
+    {
+      "id": "US-006",
+      "title": "Update README.md workflow section",
+      "description": "As a user, I want step-by-step workflow instructions so that I can follow the ralph-ryan process",
+      "acceptanceCriteria": [
+        "Rewrite Workflow section with three phases: Create PRD, Prepare, Run",
+        "Add bilingual explanations for each phase",
+        "Include example output/expected behavior"
+      ],
+      "priority": 6,
+      "passes": true,
+      "notes": "Completed - Workflow Details section with three phases"
+    },
+    {
+      "id": "US-007",
+      "title": "Update README.md key files and concepts",
+      "description": "As a user, I want to understand the file structure and core concepts so that I can work effectively with ralph-ryan",
+      "acceptanceCriteria": [
+        "Update Key Files table to reflect new structure: .claude/ralph-ryan/prd.md, prd.json, progress.txt, skills/ralph-ryan/",
+        "Update Critical Concepts section with Claude Code specific info",
+        "Remove references to ralph.sh and prompt.md"
+      ],
+      "priority": 7,
+      "passes": true,
+      "notes": "Completed - Key Files and Critical Concepts updated"
+    },
+    {
+      "id": "US-008",
+      "title": "Update AGENTS.md for Claude Code",
+      "description": "As Claude Code, I want accurate agent instructions so that I can execute ralph-ryan tasks correctly",
+      "acceptanceCriteria": [
+        "Update Overview section to describe ralph-ryan skill + ralph-loop plugin architecture",
+        "Update Commands section with Claude Code commands: skill invocation examples, ralph-loop command syntax",
+        "Update Key Files to match new structure",
+        "Update Patterns section for Claude Code context",
+        "Add bilingual content throughout"
+      ],
+      "priority": 8,
+      "passes": true,
+      "notes": "Completed - Full AGENTS.md rewrite with bilingual content"
+    }
+  ]
+}

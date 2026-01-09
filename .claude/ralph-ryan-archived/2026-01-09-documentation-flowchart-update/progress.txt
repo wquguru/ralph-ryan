@@ -1,0 +1,48 @@
+## Codebase Patterns
+
+- Flowchart uses @xyflow/react with custom node types
+- Steps defined in `allSteps` array with phase categorization
+- Build command: `cd flowchart && npm run build`
+
+---
+
+# Progress Log
+
+## 2026-01-09 - US-001
+- Updated flowchart steps and labels for Claude Code workflow
+- Files changed: flowchart/src/App.tsx
+- **Learnings:**
+  - allSteps array controls all step labels and descriptions
+  - Header is in the App component's return JSX
+  - Typecheck via `npm run build` in flowchart directory
+---
+## 2026-01-09 - US-002
+- Updated flowchart notes with bilingual content
+- Files changed: flowchart/src/App.tsx
+- **Learnings:**
+  - Notes array controls annotation boxes
+  - appearsWithStep controls when notes become visible
+  - Bilingual format: English line + Chinese line
+---
+## 2026-01-09 - US-003
+- Added bilingual support to all flowchart step labels and descriptions
+- Files changed: flowchart/src/App.tsx
+- **Learnings:**
+  - Format for bilingual: "English | 中文"
+  - Keep labels concise for node width constraints
+---
+## 2026-01-09 - US-004/005/006/007
+- Complete README.md rewrite for Claude Code
+- Files changed: README.md
+- **Learnings:**
+  - Batch related README changes into single commit
+  - Use "English | 中文" format consistently
+  - Keep code examples accurate with actual skill commands
+---
+## 2026-01-09 - US-008
+- Updated AGENTS.md for Claude Code
+- Files changed: AGENTS.md
+- **Learnings:**
+  - AGENTS.md should include skill file paths
+  - Include codebase-specific notes for future iterations
+---

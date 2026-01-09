@@ -1,0 +1,67 @@
+## Codebase Patterns
+
+- Node dimensions controlled by CSS `.custom-node` class, not inline styles
+- Use `@media (max-width: 767px)` for mobile breakpoint
+
+---
+
+# Progress Log
+
+## 2026-01-09 - US-001
+- Added mobile responsive media query for nodes
+- Removed inline width/height from createNode(), letting CSS handle sizing
+- Files changed: `flowchart/src/App.css`, `flowchart/src/App.tsx`
+- **Learnings:**
+  - React Flow nodes accept inline styles but CSS class styles work better for responsive design
+  - Removed unused `nodeWidth` and `nodeHeight` constants
+---
+
+## 2026-01-09 - US-002
+- Simplified all node labels to "中文 / English" format
+- Shortened descriptions to be more compact
+- Updated header title and subtitle
+- Simplified note content
+- Files changed: `flowchart/src/App.tsx`
+- **Learnings:**
+  - Keep bilingual text concise with "/" separator
+---
+
+## 2026-01-09 - US-003
+- Added MANUAL_STEP_IDS constant for manual step detection
+- CustomNode now shows 👆 for manual steps (ID 1,2,3) and ⚙️ for auto steps
+- Added node ID to data object in createNode
+- Added .node-icon CSS class for spacing
+- Files changed: `flowchart/src/App.tsx`, `flowchart/src/App.css`
+- **Learnings:**
+  - Pass additional data through node's data object for custom rendering
+---
+
+## 2026-01-09 - US-004
+- Wrapped hover styles in @media (hover: hover) for touch device compatibility
+- Added min-height: 44px to buttons for better touch targets
+- ReactFlow zoomOnPinch already enabled
+- Files changed: `flowchart/src/App.css`
+- **Learnings:**
+  - Use @media (hover: hover) to prevent sticky hover states on touch devices
+  - 44px is the recommended minimum touch target size
+---
+
+## 2026-01-09 - US-005
+- Hide .node-description on mobile with display: none
+- Hide .note-node on mobile with display: none
+- Files changed: `flowchart/src/App.css`
+- **Learnings:**
+  - CSS display: none is simpler than JS for hiding elements on mobile
+---
+
+## 2026-01-09 - US-006
+- Added .btn-text and .btn-icon spans to buttons
+- Mobile shows icons (← → ↺), desktop shows text
+- Reduced controls padding/gap on mobile
+- Simplified step counter format
+- Also added mobile header/instructions styling
+- Files changed: `flowchart/src/App.tsx`, `flowchart/src/App.css`
+- **Learnings:**
+  - Use separate spans with CSS show/hide for responsive button text
+  - Arrow icons (← → ↺) are universally understood
+---

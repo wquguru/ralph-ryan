@@ -1,0 +1,31 @@
+## Codebase Patterns
+
+- README.md uses bilingual format (English | 中文) for headers and content
+- Keep documentation concise - merge similar sections, avoid repetition
+
+---
+
+# Progress Log
+
+## 2026-01-09 - US-001: 简化文档结构
+- Simplified README.md from 237 lines to 93 lines (60% reduction)
+- Merged Quick Start and Workflow Details sections
+- Removed Debugging section
+- Kept bilingual format throughout
+- **Files changed:** README.md
+- **Learnings:**
+  - Bilingual docs can use inline format (English | 中文) for brevity
+  - Tables work well for file listings
+
+---
+
+## 2026-01-09 - US-002: 添加鸣谢与命名说明
+- Replaced Geoffrey Huntley acknowledgment with Ryan Carson
+- Added project fork source (snarktank/ralph)
+- Explained "ralph-ryan" naming (Ralph pattern + Ryan creator)
+- Added Amp recommendation
+- **Files changed:** README.md
+- **Learnings:**
+  - Acknowledgments should be brief but include key links
+
+---

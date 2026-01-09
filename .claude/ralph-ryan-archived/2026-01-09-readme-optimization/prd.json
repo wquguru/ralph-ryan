@@ -1,0 +1,39 @@
+{
+  "project": "ralph-ryan-for-claud",
+  "featureName": "readme-optimization",
+  "branchName": "ralph/readme-optimization",
+  "description": "优化 README.md 文档，使其更简洁易读，并添加对原项目作者 Ryan Carson 的鸣谢",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "简化文档结构",
+      "description": "作为用户，我希望 README 更精简，能快速理解项目用途和使用方法",
+      "acceptanceCriteria": [
+        "精简 Introduction 部分，去除重复描述",
+        "合并 Quick Start 和 Workflow Details，避免内容重复",
+        "删除冗余的 Debugging 部分（非核心功能）",
+        "保持中英双语格式",
+        "总行数减少 30% 以上"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "添加鸣谢与命名说明",
+      "description": "作为用户，我希望了解项目来源和命名原因",
+      "acceptanceCriteria": [
+        "添加 Ryan Carson 鸣谢（项目 fork 自 https://github.com/snarktank/ralph）",
+        "说明 ralph-ryan 命名由来（Ralph 模式 + Ryan 作者名）",
+        "介绍 Ryan 是 https://ampcode.com/ 创始人",
+        "鼓励用户尝试 Amp",
+        "移除 Geoffrey Huntley 鸣谢",
+        "鸣谢部分简洁，不超过 5 行"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    }
+  ]
+}
