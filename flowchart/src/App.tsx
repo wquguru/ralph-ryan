@@ -56,25 +56,22 @@ const notes = [
     appearsWithStep: 2,
     position: { x: 340, y: 100 },
     color: { bg: '#f5f0ff', border: '#8b5cf6' },
-    content: `{
-  "id": "US-001",
-  "title": "Add priority field to database",
-  "acceptanceCriteria": [
-    "Add priority column to tasks table",
-    "Generate and run migration",
-    "Typecheck passes"
-  ],
-  "passes": false
-}`,
+    content: `# Three Phases | 三阶段
+
+1. PRD: use ralph-ryan skill
+2. Prep: use ralph-ryan skill
+3. Run: /ralph-loop "..."`,
   },
   {
     id: 'note-2',
     appearsWithStep: 8,
     position: { x: 480, y: 620 },
     color: { bg: '#fdf4f0', border: '#c97a50' },
-    content: `Also updates AGENTS.md with
-patterns discovered, so future
-iterations learn from this one.`,
+    content: `Learnings saved to progress.txt
+学习记录保存到 progress.txt
+
+Future iterations benefit!
+后续迭代可复用！`,
   },
 ];
 
