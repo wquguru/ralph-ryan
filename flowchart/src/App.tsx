@@ -36,11 +36,11 @@ const phaseColors: Record<Phase, { bg: string; border: string }> = {
 
 const allSteps: { id: string; label: string; description: string; phase: Phase }[] = [
   // Setup phase (vertical)
-  { id: '1', label: 'You write a PRD', description: 'Define what you want to build', phase: 'setup' },
-  { id: '2', label: 'Convert to prd.json', description: 'Break into small user stories', phase: 'setup' },
-  { id: '3', label: 'Run ralph.sh', description: 'Starts the autonomous loop', phase: 'setup' },
+  { id: '1', label: 'Write PRD', description: 'Use ralph-ryan skill', phase: 'setup' },
+  { id: '2', label: 'Prep: Convert to prd.json', description: 'Use ralph-ryan skill', phase: 'setup' },
+  { id: '3', label: 'Run ralph-loop', description: 'Start autonomous loop', phase: 'setup' },
   // Loop phase
-  { id: '4', label: 'Amp picks a story', description: 'Finds next passes: false', phase: 'loop' },
+  { id: '4', label: 'Claude picks a story', description: 'Finds next passes: false', phase: 'loop' },
   { id: '5', label: 'Implements it', description: 'Writes code, runs tests', phase: 'loop' },
   { id: '6', label: 'Commits changes', description: 'If tests pass', phase: 'loop' },
   { id: '7', label: 'Updates prd.json', description: 'Sets passes: true', phase: 'loop' },
@@ -325,8 +325,8 @@ function App() {
   return (
     <div className="app-container">
       <div className="header">
-        <h1>How Ralph Works with Amp</h1>
-        <p>Autonomous AI agent loop for completing PRDs</p>
+        <h1>How Ralph-Ryan Works with Claude Code | Ralph-Ryan 与 Claude Code 协作流程</h1>
+        <p>Autonomous AI agent loop for completing PRDs | 自主 AI 代理循环完成 PRD</p>
       </div>
       <div className="flow-container">
         <ReactFlow
