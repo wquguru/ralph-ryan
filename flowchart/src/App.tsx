@@ -36,18 +36,18 @@ const phaseColors: Record<Phase, { bg: string; border: string }> = {
 
 const allSteps: { id: string; label: string; description: string; phase: Phase }[] = [
   // Setup phase (vertical)
-  { id: '1', label: 'Write PRD', description: 'Use ralph-ryan skill', phase: 'setup' },
-  { id: '2', label: 'Prep: Convert to prd.json', description: 'Use ralph-ryan skill', phase: 'setup' },
-  { id: '3', label: 'Run ralph-loop', description: 'Start autonomous loop', phase: 'setup' },
+  { id: '1', label: 'Write PRD | 编写 PRD', description: 'Use ralph-ryan skill | 使用 ralph-ryan 技能', phase: 'setup' },
+  { id: '2', label: 'Prep | 准备', description: 'Convert to prd.json | 转换为 prd.json', phase: 'setup' },
+  { id: '3', label: 'Run ralph-loop | 运行 ralph-loop', description: 'Start autonomous loop | 启动自主循环', phase: 'setup' },
   // Loop phase
-  { id: '4', label: 'Claude picks a story', description: 'Finds next passes: false', phase: 'loop' },
-  { id: '5', label: 'Implements it', description: 'Writes code, runs tests', phase: 'loop' },
-  { id: '6', label: 'Commits changes', description: 'If tests pass', phase: 'loop' },
-  { id: '7', label: 'Updates prd.json', description: 'Sets passes: true', phase: 'loop' },
-  { id: '8', label: 'Logs to progress.txt', description: 'Saves learnings', phase: 'loop' },
-  { id: '9', label: 'More stories?', description: '', phase: 'decision' },
+  { id: '4', label: 'Pick story | 选择故事', description: 'Find next passes: false | 找下一个未完成', phase: 'loop' },
+  { id: '5', label: 'Implement | 实现', description: 'Write code, run tests | 写代码、跑测试', phase: 'loop' },
+  { id: '6', label: 'Commit | 提交', description: 'If tests pass | 测试通过则提交', phase: 'loop' },
+  { id: '7', label: 'Update prd.json | 更新', description: 'Set passes: true | 标记完成', phase: 'loop' },
+  { id: '8', label: 'Log | 记录', description: 'Save to progress.txt | 保存学习记录', phase: 'loop' },
+  { id: '9', label: 'More? | 还有吗？', description: '', phase: 'decision' },
   // Exit
-  { id: '10', label: 'Done!', description: 'All stories complete', phase: 'done' },
+  { id: '10', label: 'Done! | 完成！', description: 'All stories complete | 所有故事已完成', phase: 'done' },
 ];
 
 const notes = [
