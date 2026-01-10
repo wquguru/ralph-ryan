@@ -1,0 +1,39 @@
+## Codebase Patterns
+
+- 移动端样式使用 `@media (max-width: 767px)` 媒体查询
+- React Flow 控制面板类名: `.react-flow__controls`
+- 在移动端使用 absolute 定位元素时，父容器需要 `position: relative`
+- 使用 `onInit` 回调获取 ReactFlowInstance，可调用 `fitView` 等方法
+- fitViewOptions padding 值影响节点与视图边缘的距离
+
+---
+
+# Progress Log
+
+## 2026-01-10 - US-001
+- What was implemented: 移动端隐藏 React Flow 控制面板，导航控件使用 absolute 定位浮动在流程图区域底部
+- Files changed: flowchart/src/App.css
+- **Learnings:**
+  - React Flow 控制面板可以通过 CSS `.react-flow__controls { display: none }` 隐藏
+  - 导航控件使用 absolute + transform: translateX(-50%) 实现水平居中
+  - 添加半透明背景和 box-shadow 提升浮动元素的可见性
+---
+
+## 2026-01-10 - US-002
+- What was implemented: 增加 fitView padding 确保移动端节点不被截断，使用 onInit 回调在初始化后重新 fitView
+- Files changed: flowchart/src/App.tsx
+- **Learnings:**
+  - fitViewOptions 的 padding 值是相对于节点边界框的比例
+  - 单独增加 padding 值可能不够，需要配合 onInit 回调手动调用 fitView
+  - 调整节点初始位置也可以帮助解决边距问题
+  - ReactFlowInstance 类型需要从 @xyflow/react 导入
+---
+
+## 2026-01-10 - US-003
+- What was implemented: 点击 Next/Previous 时视图自动聚焦到当前步骤节点，使用 setCenter API 实现平滑动画
+- Files changed: flowchart/src/App.tsx
+- **Learnings:**
+  - 使用 `setCenter(x, y, { duration, zoom })` 可以平滑移动视图到指定坐标
+  - 需要在 setTimeout 中调用 setCenter 以确保节点已渲染
+  - 节点中心位置 = 节点位置 + 节点尺寸/2
+---

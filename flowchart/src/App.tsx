@@ -290,6 +290,23 @@ function App() {
     return sourceIndex < visibleStepCount && targetIndex < visibleStepCount;
   };
 
+  // Focus on a specific node by centering the view
+  const focusOnNode = useCallback((nodeId: string) => {
+    if (!reactFlowInstance.current) return;
+
+    const nodePosition = nodePositions.current[nodeId];
+    if (!nodePosition) return;
+
+    // Node center offset (approximate node size: 150x60)
+    const centerX = nodePosition.x + 75;
+    const centerY = nodePosition.y + 30;
+
+    reactFlowInstance.current.setCenter(centerX, centerY, {
+      duration: 500,
+      zoom: reactFlowInstance.current.getZoom(),
+    });
+  }, []);
+
   const handleNext = useCallback(() => {
     if (visibleCount < allSteps.length) {
       const newCount = visibleCount + 1;
@@ -301,8 +318,15 @@ function App() {
           createEdge(conn, getEdgeVisibility(conn, newCount))
         )
       );
+
+      // Focus on the newly visible node
+      const newNodeId = allSteps[newCount - 1]?.id;
+      if (newNodeId) {
+        // Small delay to allow node to render
+        setTimeout(() => focusOnNode(newNodeId), 50);
+      }
     }
-  }, [visibleCount, setNodes, setEdges]);
+  }, [visibleCount, setNodes, setEdges, focusOnNode]);
 
   const handlePrev = useCallback(() => {
     if (visibleCount > 1) {
@@ -315,8 +339,14 @@ function App() {
           createEdge(conn, getEdgeVisibility(conn, newCount))
         )
       );
+
+      // Focus on the last visible node after going back
+      const lastVisibleNodeId = allSteps[newCount - 1]?.id;
+      if (lastVisibleNodeId) {
+        setTimeout(() => focusOnNode(lastVisibleNodeId), 50);
+      }
     }
-  }, [visibleCount, setNodes, setEdges]);
+  }, [visibleCount, setNodes, setEdges, focusOnNode]);
 
   const handleReset = useCallback(() => {
     setVisibleCount(1);

@@ -1,0 +1,54 @@
+{
+  "project": "Ralph-Ryan Flowchart",
+  "featureName": "flowchart-mobile-optimization",
+  "branchName": "ralph/flowchart-mobile-optimization",
+  "description": "优化 Ralph-Ryan 流程图在移动端的显示体验，包括导航控件位置、节点边距和步骤聚焦功能",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "优化移动端导航控件位置",
+      "description": "作为移动端用户，我希望导航控件（Previous/Next/Reset）位置更合理，这样我可以更方便地操作。",
+      "acceptanceCriteria": [
+        "移动端 (max-width: 767px) 导航控件紧贴在 React Flow 控制面板下方",
+        "移动端隐藏 React Flow 自带的控制面板（缩放按钮），简化界面",
+        "桌面端保持原有布局不变",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP (viewport: 375x667)"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "CSS media query 隐藏控制面板，导航控件使用 absolute 定位浮动在底部"
+    },
+    {
+      "id": "US-002",
+      "title": "添加流程图左侧边距",
+      "description": "作为移动端用户，我希望流程图节点有足够的左侧边距，这样节点不会被截断。",
+      "acceptanceCriteria": [
+        "移动端流程图区域有足够的 padding（左右至少 16px）",
+        "fitView 配置增加 padding 值，确保节点不贴边",
+        "初始显示时节点完整可见",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP (viewport: 375x667)"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "使用 onInit + fitView 确保节点居中显示，调整节点初始位置"
+    },
+    {
+      "id": "US-003",
+      "title": "移动端步骤切换时聚焦当前节点",
+      "description": "作为移动端用户，我希望切换步骤时自动聚焦到当前节点，这样我可以清楚看到当前步骤的内容。",
+      "acceptanceCriteria": [
+        "点击 Next/Previous 时，视图自动平移到新显示的节点",
+        "使用 ReactFlow 的 fitView 或 setCenter API 实现聚焦",
+        "聚焦动画平滑过渡",
+        "桌面端可选择保持原有行为或同步优化",
+        "Typecheck passes",
+        "Verify in browser using Playwright MCP (viewport: 375x667)"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "使用 ReactFlow setCenter API 实现平滑聚焦，duration 500ms"
+    }
+  ]
+}
