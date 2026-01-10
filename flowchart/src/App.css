@@ -204,9 +204,29 @@
     display: none;
   }
 
+  /* Hide React Flow controls panel on mobile */
+  .react-flow__controls {
+    display: none;
+  }
+
+  /* Position flow container for absolute positioning of controls */
+  .flow-container {
+    position: relative;
+  }
+
+  /* Position navigation controls inside flow container */
   .controls {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     gap: 8px;
-    padding: 12px;
+    padding: 12px 16px;
+    border-top: none;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
 
   .controls button {
