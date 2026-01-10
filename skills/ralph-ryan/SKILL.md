@@ -46,3 +46,5 @@ use ralph-ryan skill, prepare files
 # Step3: manual + auto
 use ralph-ryan skill, run claude code slash command `/ralph-loop:ralph-loop "Load skill ralph-ryan and execute run mode. Read .claude/ralph-ryan/prd.json and implement stories." --max-iterations 10`
 ```
+
+IMPORTANT NOTE: there are two `ralph-loop` in the command `/ralph-loop:ralph-loop`, don't trim it.
