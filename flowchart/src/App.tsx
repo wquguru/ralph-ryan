@@ -1,5 +1,5 @@
 import { useCallback, useState, useRef } from 'react';
-import type { Node, Edge, NodeChange, EdgeChange, Connection } from '@xyflow/react';
+import type { Node, Edge, NodeChange, EdgeChange, Connection, ReactFlowInstance } from '@xyflow/react';
 import {
   ReactFlow,
   useNodesState,
@@ -117,7 +117,7 @@ const nodeTypes = { custom: CustomNode, note: NoteNode };
 
 const positions: { [key: string]: { x: number; y: number } } = {
   // Vertical setup flow on the left
-  '1': { x: 20, y: 20 },
+  '1': { x: 80, y: 20 },
   '2': { x: 80, y: 130 },
   '3': { x: 60, y: 250 },
   // Loop
@@ -222,6 +222,15 @@ function createNoteNode(note: typeof notes[0], visible: boolean, position?: { x:
 function App() {
   const [visibleCount, setVisibleCount] = useState(1);
   const nodePositions = useRef<{ [key: string]: { x: number; y: number } }>({ ...positions });
+  const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
+
+  const onInit = useCallback((instance: ReactFlowInstance) => {
+    reactFlowInstance.current = instance;
+    // Fit view with larger padding after initialization
+    setTimeout(() => {
+      instance.fitView({ padding: 0.8, includeHiddenNodes: false });
+    }, 100);
+  }, []);
 
   const getNodes = (count: number) => {
     const stepNodes = allSteps.map((step, index) =>
@@ -331,8 +340,9 @@ function App() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           onReconnect={onReconnect}
+          onInit={onInit}
           fitView
-          fitViewOptions={{ padding: 0.2 }}
+          fitViewOptions={{ padding: 0.5 }}
           nodesDraggable={true}
           nodesConnectable={true}
           edgesReconnectable={true}
