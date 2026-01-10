@@ -91,7 +91,7 @@ Each story should complete in one context window.
 
 [![Ralph Flowchart](ralph-flowchart.png)](https://snarktank.github.io/ralph/)
 
-[View Interactive Flowchart | 查看交互式流程图](https://snarktank.github.io/ralph/)
+[View Interactive Flowchart | 查看交互式流程图](https://wquguru.github.io/ralph-ryan/)
 
 ---
 

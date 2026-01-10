@@ -7,3 +7,4 @@
 # OS files
 .DS_Store
 .idea
+.playwright-mcp
