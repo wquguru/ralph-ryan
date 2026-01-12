@@ -1,5 +1,5 @@
 import { useCallback, useState, useRef } from 'react';
-import type { Node, Edge, NodeChange, EdgeChange, Connection } from '@xyflow/react';
+import type { Node, Edge, NodeChange, EdgeChange, Connection, ReactFlowInstance } from '@xyflow/react';
 import {
   ReactFlow,
   useNodesState,
@@ -316,6 +316,10 @@ function App() {
     setEdges(edgeConnections.map((conn, index) => createEdge(conn, index < 0)));
   }, [setNodes, setEdges]);
 
+  const onInit = useCallback((instance: ReactFlowInstance) => {
+    instance.fitView({ padding: 0.3 });
+  }, []);
+
   return (
     <div className="app-container">
       <div className="header">
@@ -331,8 +335,9 @@ function App() {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           onReconnect={onReconnect}
+          onInit={onInit}
           fitView
-          fitViewOptions={{ padding: 0.2 }}
+          fitViewOptions={{ padding: 0.3 }}
           nodesDraggable={true}
           nodesConnectable={true}
           edgesReconnectable={true}

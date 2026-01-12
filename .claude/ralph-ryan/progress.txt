@@ -1,0 +1,21 @@
+## Codebase Patterns
+
+- ReactFlow uses onInit callback with ReactFlowInstance for post-initialization actions
+- fitView should be called in onInit for reliable initial viewport fitting
+- Type imports from @xyflow/react include ReactFlowInstance for callback typing
+
+---
+
+# Progress Log
+
+## 2026-01-12 - US-001
+- Implemented onInit callback to trigger fitView after ReactFlow initialization
+- Increased fitViewOptions.padding from 0.2 to 0.3 for better mobile visibility
+- Imported ReactFlowInstance type for proper typing
+- **Files changed:**
+  - flowchart/src/App.tsx
+- **Learnings:**
+  - ReactFlow's fitView prop alone may not reliably fit view on initial load
+  - Using onInit callback with instance.fitView() ensures proper initialization
+  - Padding of 0.3 provides better mobile viewport coverage
+---
