@@ -31,3 +31,16 @@
   - matchMedia is more efficient than listening to resize events
   - MediaQueryListEvent provides matches property for state updates
 ---
+
+## 2026-01-12 - US-003
+- Created positions config in src/config/positions.ts
+- Desktop positions: wide layout with spread nodes
+- Mobile positions: compact vertical layout, max x ~200px
+- Mobile note positions: stacked below main flow
+- Exported typed PositionsMap for reuse
+- **Files changed:**
+  - flowchart/src/config/positions.ts (new)
+- **Learnings:**
+  - Two-column layout works better for mobile than single column for loop nodes
+  - Notes should be stacked below main flow on mobile to avoid overlap
+---
