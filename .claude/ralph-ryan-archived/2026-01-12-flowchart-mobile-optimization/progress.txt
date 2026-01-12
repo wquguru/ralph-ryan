@@ -1,0 +1,91 @@
+## Codebase Patterns
+
+- ReactFlow uses onInit callback with ReactFlowInstance for post-initialization actions
+- fitView should be called in onInit for reliable initial viewport fitting
+- Type imports from @xyflow/react include ReactFlowInstance for callback typing
+
+---
+
+# Progress Log
+
+## 2026-01-12 - US-001
+- Implemented onInit callback to trigger fitView after ReactFlow initialization
+- Increased fitViewOptions.padding from 0.2 to 0.3 for better mobile visibility
+- Imported ReactFlowInstance type for proper typing
+- **Files changed:**
+  - flowchart/src/App.tsx
+- **Learnings:**
+  - ReactFlow's fitView prop alone may not reliably fit view on initial load
+  - Using onInit callback with instance.fitView() ensures proper initialization
+  - Padding of 0.3 provides better mobile viewport coverage
+---
+
+## 2026-01-12 - US-002
+- Created useIsMobile hook in src/hooks/useIsMobile.ts
+- Uses matchMedia API for efficient detection
+- Listens to 'change' event for resize updates
+- Returns true when viewport width <= 767px
+- **Files changed:**
+  - flowchart/src/hooks/useIsMobile.ts (new)
+- **Learnings:**
+  - matchMedia is more efficient than listening to resize events
+  - MediaQueryListEvent provides matches property for state updates
+---
+
+## 2026-01-12 - US-003
+- Created positions config in src/config/positions.ts
+- Desktop positions: wide layout with spread nodes
+- Mobile positions: compact vertical layout, max x ~200px
+- Mobile note positions: stacked below main flow
+- Exported typed PositionsMap for reuse
+- **Files changed:**
+  - flowchart/src/config/positions.ts (new)
+- **Learnings:**
+  - Two-column layout works better for mobile than single column for loop nodes
+  - Notes should be stacked below main flow on mobile to avoid overlap
+---
+
+## 2026-01-12 - US-004
+- Integrated useIsMobile hook in App component
+- App now switches between desktop/mobile positions based on viewport
+- Added reactFlowInstance ref to store instance for fitView calls
+- useEffect handles layout switching when isMobile changes
+- fitView called after layout change with 50ms delay for smooth transition
+- Updated handleReset to use current isMobile state
+- **Files changed:**
+  - flowchart/src/App.tsx
+- **Learnings:**
+  - Store ReactFlowInstance in ref for programmatic fitView calls
+  - Use prevIsMobile ref to detect actual changes vs re-renders
+  - Small timeout before fitView ensures DOM has updated with new positions
+---
+
+## 2026-01-12 - US-005
+- Disabled edit mode on mobile by setting ReactFlow props conditionally
+- nodesDraggable={!isMobile}, nodesConnectable={!isMobile}
+- edgesReconnectable={!isMobile}, elementsSelectable={!isMobile}
+- deleteKeyCode set to empty array on mobile
+- Kept pan/zoom enabled: panOnDrag, panOnScroll, zoomOnScroll, zoomOnPinch
+- **Files changed:**
+  - flowchart/src/App.tsx
+- **Learnings:**
+  - ReactFlow props accept dynamic values for conditional behavior
+  - deleteKeyCode can be empty array to disable keyboard deletion
+---
+
+## 2026-01-12 - US-006
+- Verified mobile experience using Playwright with iPhone 12 viewport (390x844)
+- Confirmed: matchMedia correctly reports mobile (width 390px < 767px breakpoint)
+- Confirmed: Mobile layout is displayed (compact vertical arrangement)
+- Confirmed: Navigation buttons work correctly
+- Confirmed: Nodes cannot be dragged with touch events (view-only mode working)
+- Note: Mouse events in Playwright bypass ReactFlow's touch detection, but real touch events work correctly
+- Screenshots saved to .playwright-mcp/mobile-us006-*.png
+- **Files changed:**
+  - .playwright-mcp/test_mobile.py (new)
+  - .playwright-mcp/test_mobile_verify.py (new)
+- **Learnings:**
+  - Playwright mouse.down/move/up bypasses mobile touch detection
+  - Use touchscreen.tap() for accurate mobile testing
+  - matchMedia is the reliable way to detect mobile viewport in React
+---

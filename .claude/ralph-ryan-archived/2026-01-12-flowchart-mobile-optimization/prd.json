@@ -1,0 +1,99 @@
+{
+  "project": "Ralph-Ryan Flowchart",
+  "featureName": "flowchart-mobile-optimization",
+  "branchName": "ralph/flowchart-mobile-optimization",
+  "description": "Mobile optimization for the Ralph-Ryan flowchart application including fitView fix, automatic layout switching, and view-only mode on mobile devices",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Fix Initial FitView on Mobile",
+      "description": "As a mobile user, I want the flowchart to fit the screen properly when the page loads so that I can see all visible nodes without manual zooming.",
+      "acceptanceCriteria": [
+        "Add onInit callback to ReactFlow to trigger fitView after initialization",
+        "Increase fitViewOptions.padding from 0.2 to 0.3",
+        "First node is fully visible and centered on initial load",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Added onInit callback with fitView, increased padding to 0.3"
+    },
+    {
+      "id": "US-002",
+      "title": "Add Mobile Detection Hook",
+      "description": "As a developer, I want a reusable hook to detect mobile viewport so that components can adapt their behavior.",
+      "acceptanceCriteria": [
+        "Create useIsMobile hook in src/hooks/useIsMobile.ts",
+        "Hook returns true when viewport width <= 767px",
+        "Hook updates on window resize",
+        "Hook uses matchMedia for efficient detection",
+        "Typecheck passes"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Created useIsMobile hook using matchMedia API"
+    },
+    {
+      "id": "US-003",
+      "title": "Create Mobile-Optimized Node Positions",
+      "description": "As a mobile user, I want a compact vertical layout so that the flowchart fits better on narrow screens.",
+      "acceptanceCriteria": [
+        "Create mobilePositions object with tighter x/y coordinates",
+        "Mobile layout uses vertical arrangement (max x around 200px)",
+        "Reduce vertical spacing between nodes for better fit",
+        "Export both positions and mobilePositions from a positions config",
+        "Typecheck passes"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Created positions config with desktop and mobile layouts"
+    },
+    {
+      "id": "US-004",
+      "title": "Implement Automatic Layout Switching",
+      "description": "As a user, I want the app to automatically use the appropriate layout based on my device so that I get the best experience without manual intervention.",
+      "acceptanceCriteria": [
+        "Use useIsMobile hook in App component",
+        "Switch between positions and mobilePositions based on device",
+        "Update nodePositions.current when layout changes",
+        "Call fitView after layout switch",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Integrated useIsMobile hook and layout switching with fitView"
+    },
+    {
+      "id": "US-005",
+      "title": "Disable Edit Mode on Mobile",
+      "description": "As a mobile user, I want a view-only experience so that I don't accidentally move nodes while scrolling.",
+      "acceptanceCriteria": [
+        "Set nodesDraggable={false} on mobile",
+        "Set nodesConnectable={false} on mobile",
+        "Set edgesReconnectable={false} on mobile",
+        "Set elementsSelectable={false} on mobile",
+        "Keep pan and zoom enabled for navigation",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": "Disabled dragging, connecting, selecting on mobile while keeping pan/zoom"
+    },
+    {
+      "id": "US-006",
+      "title": "Verify Mobile Experience with Browser Tool",
+      "description": "As a developer, I want to verify the mobile optimization works correctly using agent-browser.",
+      "acceptanceCriteria": [
+        "Use agent-browser to open page with iPhone 12 viewport",
+        "Verify flowchart is fully visible on initial load",
+        "Verify navigation buttons work correctly",
+        "Verify nodes cannot be dragged on mobile",
+        "Take screenshot to confirm layout",
+        "Typecheck passes"
+      ],
+      "priority": 6,
+      "passes": true,
+      "notes": "Verified with Playwright - mobile detection works, layout correct, view-only mode confirmed with touch events"
+    }
+  ]
+}
