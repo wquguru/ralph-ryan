@@ -30,8 +30,8 @@
         "Typecheck passes"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Created useIsMobile hook using matchMedia API"
     },
     {
       "id": "US-003",

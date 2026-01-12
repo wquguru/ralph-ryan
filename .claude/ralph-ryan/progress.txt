@@ -19,3 +19,15 @@
   - Using onInit callback with instance.fitView() ensures proper initialization
   - Padding of 0.3 provides better mobile viewport coverage
 ---
+
+## 2026-01-12 - US-002
+- Created useIsMobile hook in src/hooks/useIsMobile.ts
+- Uses matchMedia API for efficient detection
+- Listens to 'change' event for resize updates
+- Returns true when viewport width <= 767px
+- **Files changed:**
+  - flowchart/src/hooks/useIsMobile.ts (new)
+- **Learnings:**
+  - matchMedia is more efficient than listening to resize events
+  - MediaQueryListEvent provides matches property for state updates
+---
