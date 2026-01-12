@@ -44,3 +44,18 @@
   - Two-column layout works better for mobile than single column for loop nodes
   - Notes should be stacked below main flow on mobile to avoid overlap
 ---
+
+## 2026-01-12 - US-004
+- Integrated useIsMobile hook in App component
+- App now switches between desktop/mobile positions based on viewport
+- Added reactFlowInstance ref to store instance for fitView calls
+- useEffect handles layout switching when isMobile changes
+- fitView called after layout change with 50ms delay for smooth transition
+- Updated handleReset to use current isMobile state
+- **Files changed:**
+  - flowchart/src/App.tsx
+- **Learnings:**
+  - Store ReactFlowInstance in ref for programmatic fitView calls
+  - Use prevIsMobile ref to detect actual changes vs re-renders
+  - Small timeout before fitView ensures DOM has updated with new positions
+---

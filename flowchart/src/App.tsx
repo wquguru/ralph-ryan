@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import type { Node, Edge, NodeChange, EdgeChange, Connection, ReactFlowInstance } from '@xyflow/react';
 import {
   ReactFlow,
@@ -17,6 +17,14 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import './App.css';
+import { useIsMobile } from './hooks/useIsMobile';
+import {
+  positions as desktopPositions,
+  mobilePositions,
+  notePositions,
+  mobileNotePositions,
+  type PositionsMap
+} from './config/positions';
 
 // Setup phase - horizontal at top
 // Loop phase - circular arrangement below
@@ -115,23 +123,12 @@ function NoteNode({ data }: { data: { content: string; color: { bg: string; bord
 
 const nodeTypes = { custom: CustomNode, note: NoteNode };
 
-const positions: { [key: string]: { x: number; y: number } } = {
-  // Vertical setup flow on the left
-  '1': { x: 20, y: 20 },
-  '2': { x: 80, y: 130 },
-  '3': { x: 60, y: 250 },
-  // Loop
-  '4': { x: 40, y: 420 },
-  '5': { x: 450, y: 300 },
-  '6': { x: 750, y: 450 },
-  '7': { x: 470, y: 520 },
-  '8': { x: 200, y: 620 },
-  '9': { x: 40, y: 720 },
-  // Exit
-  '10': { x: 350, y: 880 },
-  // Notes
-  ...Object.fromEntries(notes.map(n => [n.id, n.position])),
-};
+// Helper function to get combined positions for a given layout
+function getPositions(isMobile: boolean): PositionsMap {
+  const nodePos = isMobile ? mobilePositions : desktopPositions;
+  const notesPos = isMobile ? mobileNotePositions : notePositions;
+  return { ...nodePos, ...notesPos };
+}
 
 const edgeConnections: { source: string; target: string; sourceHandle?: string; targetHandle?: string; label?: string }[] = [
   // Setup phase (vertical) - bottom to top connections
@@ -149,11 +146,11 @@ const edgeConnections: { source: string; target: string; sourceHandle?: string; 
   { source: '9', target: '10', sourceHandle: 'bottom', targetHandle: 'top', label: 'No' },
 ];
 
-function createNode(step: typeof allSteps[0], visible: boolean, position?: { x: number; y: number }): Node {
+function createNode(step: typeof allSteps[0], visible: boolean, position: { x: number; y: number }): Node {
   return {
     id: step.id,
     type: 'custom',
-    position: position || positions[step.id],
+    position: position,
     data: {
       id: step.id,
       title: step.label,
@@ -202,11 +199,11 @@ function createEdge(conn: typeof edgeConnections[0], visible: boolean): Edge {
   };
 }
 
-function createNoteNode(note: typeof notes[0], visible: boolean, position?: { x: number; y: number }): Node {
+function createNoteNode(note: typeof notes[0], visible: boolean, position: { x: number; y: number }): Node {
   return {
     id: note.id,
     type: 'note',
-    position: position || positions[note.id],
+    position: position,
     data: { content: note.content, color: note.color },
     style: {
       opacity: visible ? 1 : 0,
@@ -220,8 +217,11 @@ function createNoteNode(note: typeof notes[0], visible: boolean, position?: { x:
 }
 
 function App() {
+  const isMobile = useIsMobile();
   const [visibleCount, setVisibleCount] = useState(1);
-  const nodePositions = useRef<{ [key: string]: { x: number; y: number } }>({ ...positions });
+  const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
+  const nodePositions = useRef<PositionsMap>(getPositions(isMobile));
+  const prevIsMobile = useRef(isMobile);
 
   const getNodes = (count: number) => {
     const stepNodes = allSteps.map((step, index) =>
@@ -241,6 +241,20 @@ function App() {
 
   const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges] = useEdgesState(initialEdges);
+
+  // Handle layout switching when isMobile changes
+  useEffect(() => {
+    if (prevIsMobile.current !== isMobile) {
+      prevIsMobile.current = isMobile;
+      const newPositions = getPositions(isMobile);
+      nodePositions.current = newPositions;
+      setNodes(getNodes(visibleCount));
+      // Fit view after layout change
+      setTimeout(() => {
+        reactFlowInstance.current?.fitView({ padding: 0.3 });
+      }, 50);
+    }
+  }, [isMobile, visibleCount, setNodes]);
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
@@ -311,12 +325,13 @@ function App() {
 
   const handleReset = useCallback(() => {
     setVisibleCount(1);
-    nodePositions.current = { ...positions };
+    nodePositions.current = getPositions(isMobile);
     setNodes(getNodes(1));
     setEdges(edgeConnections.map((conn, index) => createEdge(conn, index < 0)));
-  }, [setNodes, setEdges]);
+  }, [setNodes, setEdges, isMobile]);
 
   const onInit = useCallback((instance: ReactFlowInstance) => {
+    reactFlowInstance.current = instance;
     instance.fitView({ padding: 0.3 });
   }, []);
 
