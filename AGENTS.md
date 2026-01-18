@@ -16,13 +16,13 @@ Ralph-Ryan 是一个 Claude Code 技能，与官方 `ralph-loop` 插件配合实
 
 ```bash
 # Phase 1: Create PRD | 阶段 1：创建 PRD
-use ralph-ryan skill, write prd for [feature]
+/ralph-ryan prd [describe your feature]
 
 # Phase 2: Prepare | 阶段 2：准备
-use ralph-ryan skill, prepare files
+/ralph-ryan prep
 
 # Phase 3: Run | 阶段 3：运行
-/ralph-loop "Load skill ralph-ryan and execute run mode. Read .claude/ralph-ryan/prd.json and implement stories." --max-iterations 10
+/ralph-loop:ralph-loop "Load skill ralph-ryan and execute run mode." --max-iterations 10 --completion-promise COMPLETE
 ```
 
 ### Flowchart Development | 流程图开发

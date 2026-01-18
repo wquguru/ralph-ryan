@@ -57,13 +57,13 @@ Enter Claude Code and install the official plugin (upgrade to latest version fir
 
 ```bash
 # Phase 1: Create PRD | 创建 PRD
-use ralph-ryan skill, write prd for [your feature]
+/ralph-ryan prd [describe your feature]
 
 # Phase 2: Prepare | 准备
-use ralph-ryan skill, prepare files
+/ralph-ryan prep
 
 # Phase 3: Run | 运行
-/ralph-loop "Load skill ralph-ryan and execute run mode. Read .claude/ralph-ryan/prd.json and implement stories." --max-iterations 10
+/ralph-loop:ralph-loop "Load skill ralph-ryan and execute run mode." --max-iterations 10 --completion-promise COMPLETE
 ```
 
 **The loop will | 循环将：**

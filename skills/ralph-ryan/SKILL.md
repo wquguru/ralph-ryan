@@ -38,13 +38,13 @@ Based on user intent, load the corresponding instruction file:
 ```bash
 # Workflow
 # Step1: manual
-use ralph-ryan skill, write prd for [feature]
+/ralph-ryan prd [describe your feature]
 
 # Step2: manual
-use ralph-ryan skill, prepare files
+/ralph-ryan prep
 
 # Step3: manual + auto
-use ralph-ryan skill, run claude code slash command `/ralph-loop:ralph-loop "Load skill ralph-ryan and execute run mode." --max-iterations 10 --completion-promise COMPLETE`
+/ralph-loop:ralph-loop "Load skill ralph-ryan and execute run mode." --max-iterations 10 --completion-promise COMPLETE
 ```
 
 IMPORTANT NOTE: there are two `ralph-loop` in the command `/ralph-loop:ralph-loop`, don't trim it.
