@@ -8,6 +8,22 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/) and [Ry
 
 Ralph is an autonomous loop that runs Claude Code repeatedly until all PRD items are complete. Each iteration is a fresh instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 
+## Installation
+
+Before using this skill, you need to install the ralph-loop plugin:
+
+**Step 1: Add the official marketplace**
+```bash
+/plugin marketplace add anthropics/claude-plugins-official
+```
+
+**Step 2: Install the ralph-loop plugin**
+```bash
+/plugin install ralph-loop@claude-plugins-official
+```
+
+Make sure to upgrade Claude Code to the latest version before installation.
+
 ## Workflow
 
 ```
