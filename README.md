@@ -46,10 +46,14 @@ cd ralph-ryan && cp -r skills/ralph-ryan ~/.claude/skills/
 
 **Step 3: Install ralph-loop plugin | 安装 ralph-loop 插件**
 
-Enter Claude Code and install the official plugin (upgrade to latest version first):
+Enter Claude Code and first add the official marketplace, then install the plugin (upgrade to latest version first):
 
-进入 Claude Code，安装官方插件（先升级到最新版本）：
+进入 Claude Code，首先添加官方市场，然后安装插件（先升级到最新版本）：
 ```bash
+# Add the official marketplace | 添加官方市场
+/plugin marketplace add anthropics/claude-plugins-official
+
+# Install the ralph-loop plugin | 安装 ralph-loop 插件
 /plugin install ralph-loop@claude-plugins-official
 ```
 
