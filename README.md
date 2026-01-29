@@ -1,5 +1,11 @@
 # Ralph-Ryan for Claude Code | Claude Code 版 Ralph-Ryan
 
+> **⚠️ Migration Notice | 迁移通知**
+>
+> **English:** Since Claude Code's native Ralph Loop does not support running multiple concurrent Ralph Loops on the same branch, we now use a plugin-based approach. This project has been fully migrated to: https://github.com/wquguru/exoshell/tree/main/plugins/ralph-loop-ryan
+>
+> **中文：** 由于 Claude Code 的原生 Ralph Loop 不支持在同一个分支并发多个 Ralph Loop，目前采用 plugin 的方式进行支持，整体迁移到了：https://github.com/wquguru/exoshell/tree/main/plugins/ralph-loop-ryan
+
 ![Ralph](ralph.jpg)
 
 ## Introduction | 简介
